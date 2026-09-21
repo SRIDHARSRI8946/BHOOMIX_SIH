@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Ai land record digitilization",
+  "license": "ISC",
+  "author": "sridhar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "npm test"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.3",
+    "nodemon": "^3.1.14"
+  }
+}
