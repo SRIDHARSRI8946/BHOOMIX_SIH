@@ -35,7 +35,7 @@ export const LoginPage: React.FC = () => {
     setErrorMsg(null);
 
     try {
-      const res = await api.post('/auth/login', {
+      const res = await api.post('/api/auth/login', {
         email: email.trim(),
         password,
       });
