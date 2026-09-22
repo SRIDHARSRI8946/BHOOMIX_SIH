@@ -126,7 +126,7 @@ export const RegisterPage: React.FC = () => {
       if (err.response?.data?.detail) {
         msg = err.response.data.detail;
       } else if (err.message && (err.message.includes('Network') || err.code === 'ERR_NETWORK')) {
-        msg = 'Unable to connect to BhoomiX backend server. Please verify backend is running on http://localhost:5000.';
+        msg = 'Unable to connect to BhoomiX backend server. Please verify the service is running.';
       }
       setErrorMsg(msg);
     } finally {

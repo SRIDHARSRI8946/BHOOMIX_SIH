@@ -4,7 +4,7 @@ import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, Filter, FileUp, FileText, Download, GitCompare, Sparkles, RefreshCw } from 'lucide-react';
-import api from '../../../lib/axios';
+import api, { getPdfDownloadUrl } from '../../../lib/axios';
 import { useAuthStore } from '../../../stores/authStore';
 import { STATUS_COLORS } from '../../../lib/constants';
 
@@ -46,7 +46,7 @@ export const DocumentListPage: React.FC = () => {
   });
 
   const downloadPdf = (subId: number) => {
-    window.open(`http://localhost:5000/api/pdf/download/${subId}`, '_blank');
+    window.open(getPdfDownloadUrl(subId), '_blank');
   };
 
   return (

@@ -16,7 +16,7 @@ import {
   Layers,
   ChevronRight
 } from 'lucide-react';
-import api from '../../../lib/axios';
+import api, { getPdfDownloadUrl } from '../../../lib/axios';
 import { useAuthStore } from '../../../stores/authStore';
 import { STATUS_COLORS, PROTOTYPE_NOTICE } from '../../../lib/constants';
 
@@ -62,7 +62,7 @@ export const CitizenDashboard: React.FC = () => {
       window.URL.revokeObjectURL(url);
     } catch (e) {
       console.error('Download failed, trying direct link', e);
-      window.open(`http://localhost:5000/api/pdf/download/${subId}`, '_blank');
+      window.open(getPdfDownloadUrl(subId), '_blank');
     }
   };
 

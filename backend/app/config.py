@@ -47,3 +47,27 @@ ALLOWED_MIME_TYPES = {
 
 # CORS
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
+
+# Server & Static Serving
+PORT = int(os.getenv("PORT", "5000"))
+HOST = os.getenv("HOST", "0.0.0.0")
+
+# Static frontend assets directory
+def resolve_client_dist():
+    custom_dir = os.getenv("CLIENT_DIST_DIR")
+    if custom_dir:
+        p = Path(custom_dir)
+        if p.exists():
+            return p
+    # Bundled container path: ./client_dist
+    bundled = BASE_DIR / "client_dist"
+    if bundled.exists() and (bundled / "index.html").exists():
+        return bundled
+    # Local dev workspace path: ../client/dist
+    local_dist = BASE_DIR.parent / "client" / "dist"
+    if local_dist.exists() and (local_dist / "index.html").exists():
+        return local_dist
+    return None
+
+CLIENT_DIST_DIR = resolve_client_dist()
+

@@ -26,7 +26,7 @@ import {
   RefreshCw,
   Clock
 } from 'lucide-react';
-import api from '../../../lib/axios';
+import api, { getPdfDownloadUrl } from '../../../lib/axios';
 import { useAuthStore } from '../../../stores/authStore';
 import { MATCH_STATUS_COLORS, DEMO_DATA_NOTICE, PROTOTYPE_NOTICE } from '../../../lib/constants';
 
@@ -205,7 +205,7 @@ export const VerificationScreenPage: React.FC = () => {
   };
 
   const downloadPdf = (subId: number) => {
-    window.open(`http://localhost:5000/api/pdf/download/${subId}`, '_blank');
+    window.open(getPdfDownloadUrl(subId), '_blank');
   };
 
   const isApproved = comparisonData?.approval_status === 'APPROVED';

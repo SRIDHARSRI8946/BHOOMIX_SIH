@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-const baseURL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:5000/api';
+export const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+
+export const getPdfDownloadUrl = (subId: string | number): string => {
+  return `${API_BASE_URL}/pdf/download/${subId}`;
+};
 
 const api = axios.create({
-  baseURL,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,3 +36,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+

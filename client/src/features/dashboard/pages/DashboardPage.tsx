@@ -21,7 +21,7 @@ import {
   TrendingUp,
   Database
 } from 'lucide-react';
-import api from '../../../lib/axios';
+import api, { getPdfDownloadUrl } from '../../../lib/axios';
 import { STATUS_COLORS, DEMO_DATA_NOTICE, PROTOTYPE_NOTICE } from '../../../lib/constants';
 
 export const DashboardPage: React.FC = () => {
@@ -100,7 +100,7 @@ export const DashboardPage: React.FC = () => {
       link.remove();
       window.URL.revokeObjectURL(url);
     } catch (e) {
-      window.open(`http://localhost:5000/api/pdf/download/${subId}`, '_blank');
+      window.open(getPdfDownloadUrl(subId), '_blank');
     }
   };
 

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: bhoomix-app
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 1440
+      - key: MAX_UPLOAD_SIZE_MB
+        value: 15
+      - key: UPLOAD_DIR
+        value: ./uploads/private
