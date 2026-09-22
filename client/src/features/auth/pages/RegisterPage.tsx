@@ -97,7 +97,7 @@ export const RegisterPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      await api.post('/auth/register', {
+      await api.post('/api/auth/register', {
         full_name: fullName.trim(),
         email: email.trim().toLowerCase(),
         phone: phone.trim(),
