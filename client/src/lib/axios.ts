@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+export const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'https://bhoomix-sih.fastapicloud.dev/';
 
 export const getPdfDownloadUrl = (subId: string | number): string => {
   return `${API_BASE_URL}/pdf/download/${subId}`;
