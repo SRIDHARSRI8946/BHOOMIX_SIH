@@ -24,7 +24,7 @@ export const DocumentListPage: React.FC = () => {
   const fetchSubmissions = async () => {
     setLoading(true);
     try {
-      const endpoint = isCitizen ? '/citizen/submissions' : '/officer/submissions';
+      const endpoint = isCitizen ? '/api/citizen/submissions' : '/officer/submissions';
       const res = await api.get(endpoint);
       setSubmissions(res.data || []);
     } catch (e) {
