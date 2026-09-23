@@ -101,7 +101,7 @@ export const DocumentUploadPage: React.FC = () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const res = await api.post('/citizen/upload', formData, {
+      const res = await api.post('/api/citizen/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
@@ -135,7 +135,7 @@ export const DocumentUploadPage: React.FC = () => {
 
     try {
       // 1. Save any citizen field edits first
-      await api.put(`/citizen/submissions/${submissionData.submission_id}/ocr-review`, {
+      await api.put(`/api/citizen/submissions/${submissionData.submission_id}/ocr-review`, {
         extracted_owner_name: editedFields.owner_name,
         extracted_survey_number: editedFields.survey_number,
         extracted_area: editedFields.area,
@@ -148,7 +148,7 @@ export const DocumentUploadPage: React.FC = () => {
       });
 
       // 2. Submit to Revenue Officer
-      const res = await api.post(`/citizen/submissions/${submissionData.submission_id}/submit`);
+      const res = await api.post(`/api/citizen/submissions/${submissionData.submission_id}/submit`);
       setSubmittedRef(res.data.submission_reference);
       setShowConfirmModal(false);
     } catch (err: any) {
