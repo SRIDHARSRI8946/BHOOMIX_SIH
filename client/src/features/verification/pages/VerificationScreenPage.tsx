@@ -76,7 +76,7 @@ export const VerificationScreenPage: React.FC = () => {
 
   const fetchSubmissionsQueue = async () => {
     try {
-      const res = await api.get('/officer/submissions');
+      const res = await api.get('/api/officer/submissions');
       const list = res.data || [];
       setSubmissionsList(list);
       if (!selectedSubId && list.length > 0) {
@@ -93,7 +93,7 @@ export const VerificationScreenPage: React.FC = () => {
     setLoading(true);
     setActionSuccessMsg(null);
     try {
-      const res = await api.get(`/officer/submissions/${subId}/comparison`);
+      const res = await api.get(`/api/officer/submissions/${subId}/comparison`);
       setComparisonData(res.data);
       if (res.data?.discrepancy_message) {
         setManualRemarks(
@@ -111,7 +111,7 @@ export const VerificationScreenPage: React.FC = () => {
     if (!selectedSubId) return;
     setIsSubmittingManual(true);
     try {
-      const res = await api.post(`/officer/submissions/${selectedSubId}/manual-verification`, {
+      const res = await api.post(`/api/officer/submissions/${selectedSubId}/manual-verification`, {
         decision: 'UNDER_PROGRESS',
         remarks: manualRemarks.trim() || 'Officer manual verification is under progress. Physical deed examination ongoing.',
         supporting_notes: supportingNotes,
@@ -131,7 +131,7 @@ export const VerificationScreenPage: React.FC = () => {
     if (!selectedSubId) return;
     setIsSubmittingManual(true);
     try {
-      const res = await api.post(`/officer/submissions/${selectedSubId}/manual-verification`, {
+      const res = await api.post(`/api/officer/submissions/${selectedSubId}/manual-verification`, {
         decision: 'MANUAL_VERIFICATION_COMPLETED',
         remarks: manualRemarks.trim() || 'Examined original historical deed. Source notation confirmed against surveyed 1.20 Acres. Discrepancy reconciled.',
         supporting_notes: supportingNotes,
@@ -151,7 +151,7 @@ export const VerificationScreenPage: React.FC = () => {
     if (!selectedSubId || !manualRemarks.trim()) return;
     setIsSubmittingManual(true);
     try {
-      const res = await api.post(`/officer/submissions/${selectedSubId}/manual-verification`, {
+      const res = await api.post(`/api/officer/submissions/${selectedSubId}/manual-verification`, {
         decision: manualDecision,
         remarks: manualRemarks,
         supporting_notes: supportingNotes,
@@ -171,7 +171,7 @@ export const VerificationScreenPage: React.FC = () => {
     if (!selectedSubId || !approvalRemarks.trim()) return;
     setIsApproving(true);
     try {
-      const res = await api.post(`/officer/submissions/${selectedSubId}/approve`, {
+      const res = await api.post(`/api/officer/submissions/${selectedSubId}/approve`, {
         remarks: approvalRemarks,
       });
       setActionSuccessMsg(`Record formally approved. Reference: ${res.data.approval_reference}`);
@@ -189,7 +189,7 @@ export const VerificationScreenPage: React.FC = () => {
     if (!selectedSubId || !rejectRemarks.trim()) return;
     setIsRejecting(true);
     try {
-      await api.post(`/officer/submissions/${selectedSubId}/reject`, {
+      await api.post(`/api/officer/submissions/${selectedSubId}/reject`, {
         reason: rejectReason,
         remarks: rejectRemarks,
       });
