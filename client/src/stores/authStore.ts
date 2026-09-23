@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       return;
     }
     try {
-      const res = await api.get('/auth/me');
+      const res = await api.get('/api/auth/me');
       if (res.data) {
         localStorage.setItem('user_profile', JSON.stringify(res.data));
         set({ user: res.data, isAuthenticated: true });
