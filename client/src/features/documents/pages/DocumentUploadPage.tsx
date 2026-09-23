@@ -148,7 +148,7 @@ export const DocumentUploadPage: React.FC = () => {
       });
 
       // 2. Submit to Revenue Officer
-      const res = await api.post(`/api/citizen/submissions/${submissionData.submission_id}/submit`);
+      const res = await api.post(`/citizen/submissions/${submissionData.submission_id}/submit`);
       setSubmittedRef(res.data.submission_reference);
       setShowConfirmModal(false);
     } catch (err: any) {
